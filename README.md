@@ -45,3 +45,6 @@ npm intall flux@3.1.3 react-router-dom@5.0.0 bootstrap@4.3.1
 
 ## Mock Api dependencies
 npm install -D cross-env@5.2.0 npm-run-all@4.1.5 json-server@0.15.0
+
+## react toastify 
+npm install react-toastify@5.1.1
