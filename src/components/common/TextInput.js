@@ -9,7 +9,7 @@ function TextInput(props) {
 
   return (
     <div className={wrapperClass}>
-      <label htmlFor="title">Title</label>
+      <label htmlFor="title">{props.label}</label>
       <div className="field">
         <input
           id="title"
