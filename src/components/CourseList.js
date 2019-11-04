@@ -17,9 +17,7 @@ function CourseList(props) {
           return (
             <tr key={course.id}>
               <td>
-                <Link to={"/course/" + course.slug} slug="s">
-                  {course.title}
-                </Link>
+                <Link to={"/course/" + course.slug}>{course.title}</Link>
               </td>
               <td>{course.audthorId}</td>
               <td>{course.category}</td>

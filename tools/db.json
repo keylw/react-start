@@ -9,14 +9,14 @@
     },
     {
       "id": 2,
-      "title": "React: The Big Picture",
+      "title": "React: The Big ",
       "slug": "react-big-picture",
       "authorId": 1,
       "category": "JavaScript"
     },
     {
       "id": 3,
-      "title": "Creating Reusable React Components",
+      "title": "Creating Reusable React Components 7",
       "slug": "react-creating-reusable-components",
       "authorId": 1,
       "category": "JavaScript"
@@ -47,7 +47,7 @@
       "title": "Clean Code: Writing Code for Humans",
       "slug": "writing-clean-code-humans",
       "authorId": 1,
-      "category": "JJ"
+      "category": "Software Practices"
     },
     {
       "id": 8,
@@ -72,11 +72,11 @@
     },
     {
       "id": 11,
-      "slug": "sddd",
-      "title": "sddd",
+      "slug": "securing-react-apps-with-auth0-20",
+      "title": "Securing React Apps with Auth0 20",
       "authorId": 1,
       "category": "qwe",
-      "createdAt": 1572618370982
+      "createdAt": 1572863896555
     }
   ],
   "authors": [
