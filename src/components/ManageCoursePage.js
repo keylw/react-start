@@ -1,12 +1,17 @@
 import React, { useState, useEffect } from "react";
 import CourseForm from "./CourseForm";
 import courseStore from "../stores/courseStore";
+import authorStore from "../stores/AuthorStore";
+
 import { toast } from "react-toastify";
 import * as courseAction from "../actions/courseAction";
+import * as authorAction from "../actions/authorAction";
 
 const ManageCoursePage = props => {
   const [error, setError] = useState({});
   const [courses, setCourses] = useState(courseStore.getCourses());
+  const [authors, setAuthors] = useState(authorStore.getAuthors());
+
   const [course, setCourse] = useState({
     id: null,
     slug: "",
@@ -14,6 +19,19 @@ const ManageCoursePage = props => {
     authorId: null,
     category: ""
   });
+
+  useEffect(() => {
+    authorStore.addChangeListener(authorOnChange);
+
+    if (authors.length === 0) {
+      authorAction.loadAuthors();
+    }
+    return () => authorStore.removeChangeListener(authorOnChange);
+  }, [authors.length]);
+
+  function authorOnChange() {
+    setAuthors(authorStore.getAuthors());
+  }
 
   useEffect(() => {
     function coursesContainSlug(slug) {
@@ -70,6 +88,7 @@ const ManageCoursePage = props => {
     <>
       <h2> Manager Course</h2>
       <CourseForm
+        authors={authors}
         error={error}
         course={course}
         onChange={handleChange}

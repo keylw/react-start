@@ -3,6 +3,19 @@ import TextInput from "./common/TextInput.js";
 import PropTypes from "prop-types";
 
 function CourseForm(props) {
+  function a(props) {
+    let a = [];
+    props.authors.forEach(author => {
+      a.push(
+        <option key={author.id} value={author.id}>
+          {author.name}{" "}
+        </option>
+      );
+    });
+    console.log(a);
+    return a;
+  }
+
   return (
     <form onSubmit={props.onSubmit}>
       <TextInput
@@ -24,9 +37,13 @@ function CourseForm(props) {
             value={props.course.authorId || ""}
             className="form-control"
           >
-            <option value="" />
-            <option value="1">Cory House</option>
-            <option value="2">Scott Allen</option>
+            {props.authors.map(author => {
+              return (
+                <option key={author.id} value={author.id}>
+                  {author.name}
+                </option>
+              );
+            })}
           </select>
         </div>
         {props.error.authorId && (
@@ -49,6 +66,10 @@ function CourseForm(props) {
 }
 
 CourseForm.prototype = {
+  authors: PropTypes.arrayOf({
+    name: PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired
+  }),
   course: PropTypes.object.isRequired,
   onSubmit: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
