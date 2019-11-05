@@ -25,7 +25,8 @@ const ManageCoursePage = props => {
     const slug = props.match.params.slug;
     if (courses.length === 0) {
       courseAction.loadCourses();
-    } else if (slug && coursesContainSlug(slug)) {
+    } else if (!slug) {
+    } else if (coursesContainSlug(slug)) {
       setCourse(courseStore.getCourseBySlug(slug));
     } else {
       props.history.push("/error");
