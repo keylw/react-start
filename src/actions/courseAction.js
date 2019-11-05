@@ -23,7 +23,6 @@ export function loadCourses() {
 }
 
 export function deleteCourse(id) {
-  console.log("sdsd");
   return courseApi.deleteCourse(id).then(() => {
     dispacther.dispatch({
       actionType: actionType.DELETE_COURSE,

@@ -1,20 +1,39 @@
 import React, { useState, useEffect } from "react";
 import courseStore from "../stores/courseStore";
+import authorStore from "../stores/AuthorStore";
+
 import { Link } from "react-router-dom";
 import CourseList from "./CourseList";
 import { loadCourses, deleteCourse } from "../actions/courseAction";
+import { loadAuthors } from "../actions/authorAction";
 
 function CoursesPage() {
   const [courses, setCourses] = useState(courseStore.getCourses());
+  const [authors, setAuthors] = useState(authorStore.getAuthors());
 
   useEffect(() => {
-    courseStore.addChangeListener(onChange);
+    courseStore.addChangeListener(coursesOnChange);
     if (courses.length === 0) loadCourses();
-    return () => courseStore.removeChangeListener(onChange); // cleanup
+    return () => courseStore.removeChangeListener(coursesOnChange); // cleanup
   }, [courses.length]);
 
-  function onChange() {
+  function coursesOnChange() {
     setCourses(courseStore.getCourses());
+  }
+
+  useEffect(() => {
+    authorStore.addChangeListener(onChange);
+    if (authors.length === 0) loadAuthors();
+    return () => authorStore.removeChangeListener(onChange); // cleanup
+  }, [authors.length]);
+
+  function onChange() {
+    setAuthors(authorStore.getAuthors());
+  }
+
+  function getAuthor(id) {
+    let a = authors.find(author => author.id === id);
+    return a === undefined ? "" : a.name;
   }
 
   return (
@@ -24,7 +43,11 @@ function CoursesPage() {
         Add Course
       </Link>
 
-      <CourseList courses={courses} deleteCourse={deleteCourse} />
+      <CourseList
+        courses={courses}
+        getAuthor={getAuthor}
+        deleteCourse={deleteCourse}
+      />
     </>
   );
 }

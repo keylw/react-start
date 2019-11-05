@@ -28,7 +28,7 @@ function CourseList(props) {
               <td>
                 <Link to={"/course/" + course.slug}>{course.title}</Link>
               </td>
-              <td>{course.audthorId}</td>
+              <td>{props.getAuthor(course.authorId)}</td>
               <td>{course.category}</td>
             </tr>
           );
@@ -43,7 +43,7 @@ CourseList.prototype = {
   courses: PropTypes.arrayOf({
     id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
-    audthorId: PropTypes.number.isRequired,
+    authorId: PropTypes.number.isRequired,
     category: PropTypes.string.isRequired
   })
 };
