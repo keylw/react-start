@@ -16,15 +16,22 @@ const ManageCoursePage = props => {
   });
 
   useEffect(() => {
+    function coursesContainSlug(slug) {
+      return courses.findIndex(o => o.slug === slug) !== -1;
+    }
+
     courseStore.addChangeListener(onChange);
+
     const slug = props.match.params.slug;
     if (courses.length === 0) {
       courseAction.loadCourses();
-    } else if (slug) {
+    } else if (slug && coursesContainSlug(slug)) {
       setCourse(courseStore.getCourseBySlug(slug));
+    } else {
+      props.history.push("/error");
     }
     return () => courseStore.removeChangeListener(onChange);
-  }, [courses.length, props.match.params.slug]);
+  }, [courses.length, props.match.params.slug, props.history, courses]);
 
   function onChange() {
     setCourses(courseStore.getCourses());
