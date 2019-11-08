@@ -3,19 +3,6 @@ import TextInput from "./common/TextInput.js";
 import PropTypes from "prop-types";
 
 function CourseForm(props) {
-  function a(props) {
-    let a = [];
-    props.authors.forEach(author => {
-      a.push(
-        <option key={author.id} value={author.id}>
-          {author.name}{" "}
-        </option>
-      );
-    });
-    console.log(a);
-    return a;
-  }
-
   return (
     <form onSubmit={props.onSubmit}>
       <TextInput
