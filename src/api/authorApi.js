@@ -2,7 +2,11 @@ import { handleResponse, handleError } from "./apiUtils";
 const baseUrl = process.env.REACT_APP_API_URL + "/authors/";
 
 export function getAuthors() {
-  return fetch(baseUrl)
+  return fetch(baseUrl, {
+    header: {
+      Authorization: "Basic " + Buffer.from("admin:password").toString("base64")
+    }
+  })
     .then(handleResponse)
     .catch(handleError);
 }

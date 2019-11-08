@@ -1,8 +1,15 @@
 import { handleResponse, handleError } from "./apiUtils";
 const baseUrl = process.env.REACT_APP_API_URL + "/courses/";
 
+let username = "admin";
+let password = "password";
+
 export function getCourses() {
-  return fetch(baseUrl)
+  return fetch(baseUrl, {
+    method: "GET",
+    Authorization:
+      "Basic " + Buffer.from(username + ":" + password).toString("base64")
+  })
     .then(handleResponse)
     .catch(handleError);
 }
