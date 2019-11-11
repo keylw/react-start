@@ -21,7 +21,7 @@ function CourseForm(props) {
             id="author"
             name="authorId"
             onChange={props.onChange}
-            default={props.course.authorId || ""}
+            value={props.course.authorId || ""}
             className="form-control"
           >
             {props.authors.map(author => {
