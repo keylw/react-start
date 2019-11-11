@@ -46,11 +46,17 @@ const ManageCoursePage = props => {
     } else if (!slug) {
     } else if (coursesContainSlug(slug)) {
       setCourse(courseStore.getCourseBySlug(slug));
-    } else {
+    } else if (!course.slug) {
       props.history.push("/error");
     }
     return () => courseStore.removeChangeListener(onChange);
-  }, [courses.length, props.match.params.slug, props.history, courses]);
+  }, [
+    courses.length,
+    props.match.params.slug,
+    props.history,
+    courses,
+    course.slug
+  ]);
 
   function onChange() {
     setCourses(courseStore.getCourses());
