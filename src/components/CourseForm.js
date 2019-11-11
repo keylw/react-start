@@ -26,7 +26,6 @@ function CourseForm(props) {
           >
             <option value="" />
             {props.authors.map(author => {
-              console.log(props.course.authorId);
               return (
                 <option key={author.id} value={author.id}>
                   {author.name}
