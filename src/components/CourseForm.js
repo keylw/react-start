@@ -21,9 +21,12 @@ function CourseForm(props) {
             id="author"
             name="authorId"
             onChange={props.onChange}
-            value={props.course.authorId || ""}
+            value={props.course.authorId || -1}
             className="form-control"
           >
+            <option disabled selected value={-1}>
+              -- select Author --
+            </option>
             {props.authors.map(author => {
               return (
                 <option key={author.id} value={author.id}>
