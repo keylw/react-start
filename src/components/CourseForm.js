@@ -24,10 +24,9 @@ function CourseForm(props) {
             default={props.course.authorId || ""}
             className="form-control"
           >
-            <option key={""} value={null}>
-              {""}
-            </option>
+            <option value="" />
             {props.authors.map(author => {
+              console.log(props.course.authorId);
               return (
                 <option key={author.id} value={author.id}>
                   {author.name}
